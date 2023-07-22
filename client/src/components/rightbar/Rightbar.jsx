@@ -2,17 +2,18 @@ import "./rightbar.css";
 import {Users} from "../../dummyData";
 import Online from "../online/Online";
 
-export default function Rightbar({profile}) {
+export default function Rightbar({user}) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () => {
   return (
     <>
     <div className="birthdayContainer">
-    <img className="birthdayImg" src="assets/gift.png" alt=""/>
+    <img className="birthdayImg" src="{`${PF}/gift.png" alt=""/>
       <span className="birthdayText">
       <b>William smith</b> and <b>4 other friends</b>have a birthday today
       </span>
     </div>
-    <img className="rightbarAd" src="assets/ad1.jpg" alt=""/>
+    <img className="rightbarAd" src="{`${PF}/ad1.jpg" alt=""/>
      <h4 className="rightbarTitle">Online</h4> 
      <ul className="rightbarFriendList">
      {Users.map((u) => (
@@ -29,22 +30,28 @@ const ProfileRightbar = () => {
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">City:</span>
-          <span className="rightbarInfoValue">New York</span>
+          <span className="rightbarInfoValue">{user.city}</span>
         </div>
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">From:</span>
-          <span className="rightbarInfoValue">Madrid</span>
+          <span className="rightbarInfoValue">{user.from}</span>
         </div>
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">Relationship:</span>
-          <span className="rightbarInfoValue">Single</span>
+          <span className="rightbarInfoValue">
+          {user.relationship === 1
+            ? "Single"
+            : user.relationship === 1
+            ? "Married"
+            : "-"}
+          </span>
         </div>
       </div>
       <h4 className="rightbarTitle">User friends</h4>
       <div className="rightbarFollowings">
         <div className="rightbarFollowing">
           <img
-            src="assets/people/1.jpeg"
+            src={`${PF}people/1.jpeg`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -52,7 +59,7 @@ const ProfileRightbar = () => {
         </div>
         <div className="rightbarFollowing">
           <img
-            src="assets/people/2.png"
+            src={`${PF}people/2.png`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -60,7 +67,7 @@ const ProfileRightbar = () => {
         </div>
         <div className="rightbarFollowing">
           <img
-            src="assets/people/3.jpeg"
+            src={`${PF}people/3.jpeg`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -68,7 +75,7 @@ const ProfileRightbar = () => {
         </div>
         <div className="rightbarFollowing">
           <img
-            src="assets/people/4.png"
+            src={`${PF}people/4.png`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -76,7 +83,7 @@ const ProfileRightbar = () => {
         </div>
         <div className="rightbarFollowing">
           <img
-            src="assets/people/5.png"
+            src={`${PF}people/5.png`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -84,7 +91,7 @@ const ProfileRightbar = () => {
         </div>
         <div className="rightbarFollowing">
           <img
-            src="assets/people/6.jpeg"
+            src={`${PF}people/6.jpeg`}
             alt=""
             className="rightbarFollowingImg"
           />
@@ -97,7 +104,7 @@ const ProfileRightbar = () => {
 return (
   <div className="rightbar">
     <div className="rightbarWrapper">
-      {profile ? <ProfileRightbar /> : <HomeRightbar />}
+      {user ? <ProfileRightbar /> : <HomeRightbar />}
     </div>
   </div>
 );
